@@ -226,7 +226,18 @@ func main() {
 		}
 
 		// Disable browser caching during development
-		w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
+		// w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
+		// HTML
+		w.Header().Set(
+		    "Cache-Control",
+		    "public, max-age=0, s-maxage=3600, must-revalidate",
+		)
+		
+		// Astro assets
+		w.Header().Set(
+		    "Cache-Control",
+		    "public, max-age=31536000, immutable",
+		)
 
 		candidates := []string{
 			path + "/index.html",
